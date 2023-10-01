@@ -4,6 +4,7 @@ N: the modulus
 return (p, q): the factors of N
 """
 def get_factors(N):
+    # TODO: Implement this function for Task 2
     p, q = 0, 0
     # TODO: Implement this function for Task 2
     return p, q
