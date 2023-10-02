@@ -1,3 +1,4 @@
+
 ### Get the greatest common divisor of 'a' and 'b'
 def gcd(a, b):
     while b:
@@ -47,32 +48,19 @@ Note: m*m*m should be smaller than N1 * N2 * N3
 """
 def recover_msg(N1, N2, N3, C1, C2, C3):
     m = 0
+    
     # TODO: Implement this function for Task 4
-        
-    # Calculate the product of all moduli
-    N = N1 * N2 * N3
+
+    a1 = modinv(N1, N2*N3)
+    a2 = modinv(N2, N3*N1)
+    a3 = modinv(N3, N1*N2)
+
+    S = a1*C1*N2*N3 + a2*N1*C2*N3 + a3*N1*N2*C3
     
-    # Calculate partial moduli
-    N1_bar = N // N1
-    N2_bar = N // N2
-    N3_bar = N // N3
+    m = root3(S % (N1*N2*N3))
     
-    # Calculate modular inverses
-    M1 = modinv(N1_bar, N1)
-    M2 = modinv(N2_bar, N2)
-    M3 = modinv(N3_bar, N3)
-    
-    # Use CRT to compute the message
-    m = (C1 * N1_bar * M1 + C2 * N2_bar * M2 + C3 * N3_bar * M3) % N
-    
-    # Calculate the cubic root of m to get the original message
-    original_message = root3(m)
-    
-    # Convert the original_message to hexadecimal format
-    hex_message = hex(original_message).replace("0x", "")
-    
-    return "0x" + hex_message
- 
+    return m
+
 
 def get_student_number():
     # TODO: Fill your student number here
