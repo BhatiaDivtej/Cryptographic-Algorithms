@@ -33,26 +33,9 @@ e: the encryption exponent
 return d: the decryption exponent
 """
 def get_private_key_from_n1_n2_e(n1, n2, e):
-    # Calculate the GCD of n1 and n2
-    gcd_result = gcd(n1, n2)
-
-    # # Ensure that n1 and n2 share a common prime factor
-    # if gcd_result == 1:
-    #     raise ValueError("n1 and n2 do not share a common prime factor")
-
-    # Calculate p and q, the prime factors of n1
-    p = gcd_result
-    q = n1 // gcd_result
-
-    # Calculate phi(n1), where n1 = p * q
-    phi_n1 = (p - 1) * (q - 1)
-
-    # Calculate the modular multiplicative inverse of e modulo phi(n1)
-    d = pow(e, -1, phi_n1)
-
-    return d
-
-
+    p = gcd(n1, n2)
+    q = n1 // p
+    return pow(e, -1, ((p - 1) * (q - 1)))
 
 def get_student_number():
     # TODO: Fill your student number here

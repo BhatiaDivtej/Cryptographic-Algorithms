@@ -48,9 +48,27 @@ Note: m*m*m should be smaller than N1 * N2 * N3
 def recover_msg(N1, N2, N3, C1, C2, C3):
     m = 0
     # TODO: Implement this function for Task 4
-    return m
+    
+    # Calculate the modular inverses
+    m1 = N2 * N3
+    m2 = N1 * N3
+    m3 = N1 * N2
+
+    # Calculate the partial decryptions using modular inverses
+    x1 = C1 * modinv(m1, N1)
+    x2 = C2 * modinv(m2, N2)
+    x3 = C3 * modinv(m3, N3)
+
+    # Calculate the final result using CRT
+    M = (x1 + x2 + x3) % (N1 * N2 * N3)
+
+    # Find the cube root of M to get the original message
+    original_message = root3(M)
+    
+    return original_message
+
 
 def get_student_number():
     # TODO: Fill your student number here
-    return ""
+    return "3035832438"
     
