@@ -14,10 +14,10 @@ def is_waldo(n1, n2):
     result = False
     # TODO: Implement this function for Task 3
 
-    # Calculate the GCD of n1 and n2
+    # Calculate the GCD of n1 and n2 - the two moduli
     gcd_result = gcd(n1, n2)
 
-    # they share a common prime factor if gcd result > 1
+    # They share a common prime factor if gcd result > 1
     if gcd_result > 1:
         return True
     else:
@@ -33,6 +33,7 @@ e: the encryption exponent
 return d: the decryption exponent
 """
 def get_private_key_from_n1_n2_e(n1, n2, e):
+
     p = gcd(n1, n2)
     q = n1 // p
     return pow(e, -1, ((p - 1) * (q - 1)))
