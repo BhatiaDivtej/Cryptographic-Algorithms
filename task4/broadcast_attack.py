@@ -51,13 +51,15 @@ def recover_msg(N1, N2, N3, C1, C2, C3):
     
     # TODO: Implement this function for Task 4
 
-    a1 = modinv(N1, N2*N3)
-    a2 = modinv(N2, N3*N1)
-    a3 = modinv(N3, N1*N2)
+    x1 = modinv(N1, N2*N3)
+    x2 = modinv(N2, N3*N1)
+    x3 = modinv(N3, N1*N2)
 
-    S = a1*C1*N2*N3 + a2*N1*C2*N3 + a3*N1*N2*C3
+    # W = weighted
+    W = x1*C1*N2*N3 + x2*N1*C2*N3 + x3*N1*N2*C3
     
-    m = root3(S % (N1*N2*N3))
+    # Calculate the cubic root
+    m = root3(W % (N1*N2*N3))
     
     return m
 
